@@ -4,9 +4,12 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const path = require("path");
 const port = 800;
+var MongoClient = require("mongodb").MongoClient;
+var url = "mongodb://localhost:27017/";
 
 const app = express();
-
+var imgpaths=[]; 
+    var item='';
 // this is multer a bridge between file uploads
 
 const storage = multer.diskStorage({
@@ -37,9 +40,32 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // setting view engine
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname,'public')));
+app.use('/uploads', express.static('uploads'));
 
 app.get("/", (req, res) => {
- res.render("index", {title:"sumit"})
+
+   //reciving data from database
+
+   MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("mongo-img"); //database name
+    dbo
+      .collection("imgcol")  //collection name
+      .find({})
+      .toArray(function (err, result) {
+        if (err) throw err;
+
+        for (var i = 0; i < result.length; i++) {
+          console.log(result[i].PATH);
+          item = result[i].PATH;
+          imgpaths[i] = item;
+        }
+
+        db.close();
+      });
+  });
+
+ res.render("index", {Imagepath:imgpaths})
 });
 
 app.get("/upload", (req, res) => {
@@ -49,7 +75,7 @@ app.get("/upload", (req, res) => {
 app.post("/upload",upload.single('uploadimg'), (req, res) => {
   console.log(req.file); 
 
-  let path=req.file.path;
+  let path=req.file.path; 
   let filename=req.file.filename;
   
 
