@@ -3,14 +3,25 @@ const multer = require("multer");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const path = require("path");
-const port = 800;
 var MongoClient = require("mongodb").MongoClient;
+const fs = require("fs");
+const port = 800;
 var url = "mongodb://localhost:27017/";
+const dir = './uploads';
 
 const app = express();
 var imgpaths=[]; 
     var item='';
 // this is multer a bridge between file uploads
+
+
+// checking if uploads folder exists
+if (fs.existsSync(dir)) {
+  console.log('Directory exists!');
+} else {
+  console.log('Directory not found.');
+  fs.mkdirSync(dir)
+}
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
