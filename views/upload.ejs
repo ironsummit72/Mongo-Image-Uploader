@@ -10,9 +10,25 @@
   </head>
   <body>
     <%- include('partials/header'); -%>
-    <form action="/upload" method="post" enctype="multipart/form-data">
-      <input type="file" class="file" name="uploadimg" multiple/>
-      <button type="submit" name="upload" class="btn-upload" >Upload</button>
-    </form>
+    <div class="form-input">
+      <div class="preview">
+        <img id="image-preview">
+      </div>
+     
+      <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" class="file" name="uploadimg"  onchange="showPreview(event)"/>
+        <button type="submit" name="upload" class="btn-upload" >Upload</button>
+      </form>
+    </div>
   </body>
+  <script>
+     function showPreview(event){
+  if(event.target.files.length > 0){
+    var src = URL.createObjectURL(event.target.files[0]);
+    var preview = document.getElementById("image-preview");
+    preview.src = src;
+    preview.style.display = "block";
+  }
+}
+  </script>
 </html>
