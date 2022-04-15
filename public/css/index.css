@@ -7,20 +7,26 @@ body {
   height: 100%;
 }
 .img-container {
-  width: 95%;
+  width: 64%;
   height: auto;
   min-height: 500px;
   margin-bottom: 5%;
   display: grid;
   grid-template-columns: auto auto auto;
-  grid-gap: 1%;
+grid-gap: 10px;
   margin: auto;
   padding: 10px;
 }
-.images {
+/* .images {
   width: 100%;
   height: auto;
   cursor: pointer;
+} */
+.images{
+  float: left;
+  width:  300px;
+  height: 400px;
+  object-fit: cover;
 }
 header {
   position: sticky;
