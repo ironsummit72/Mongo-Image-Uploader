@@ -41,8 +41,23 @@
       <div class="header">
         <a href="/" class="home">Home</a>
         <a href="/upload" class="uploads">Upload</a>
-        <a href="/clearall" class="delete">Clear All</a>
+        <a  onclick="warning()" class="delete">Clear All</a>
       </div>
     </header>
   </body>
+  <script>
+
+   
+   function warning()
+   {
+      if(confirm("Are you sure you want to delete all the data form the database")==true)
+      {
+        location.href = "http://localhost:800/clearall"
+
+      }else{
+
+      }
+   }
+   </script>
+
 </html>
