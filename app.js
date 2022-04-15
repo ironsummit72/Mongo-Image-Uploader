@@ -81,7 +81,8 @@ app.get("/", (req, res) => {
 
 app.get("/upload", (req, res) => {
 
-  res.render("upload")
+  res.render("upload");
+
 });
 app.post("/upload",upload.single('uploadimg'), (req, res) => {
   console.log(req.file); 
@@ -98,6 +99,8 @@ app.post("/upload",upload.single('uploadimg'), (req, res) => {
     if (err) throw err;
     console.log("record insert successfully");
   });
+  
+  res.render('uploadsuccess')
 
 
 })
