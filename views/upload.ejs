@@ -11,7 +11,7 @@
   <body>
     <%- include('partials/header'); -%>
     <form action="/upload" method="post" enctype="multipart/form-data">
-      <input type="file" class="file" name="uploadimg" />
+      <input type="file" class="file" name="uploadimg" multiple/>
       <button type="submit" name="upload" class="btn-upload" >Upload</button>
     </form>
   </body>
