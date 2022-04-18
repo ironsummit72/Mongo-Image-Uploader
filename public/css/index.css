@@ -13,7 +13,7 @@ body {
   margin-bottom: 5%;
   display: grid;
   grid-template-columns: auto auto auto;
-grid-gap: 10px;
+  grid-gap: 10px;
   margin: auto;
   padding: 10px;
 }
@@ -22,9 +22,9 @@ grid-gap: 10px;
   height: auto;
   cursor: pointer;
 } */
-.images{
+.images {
   float: left;
-  width:  300px;
+  width: 300px;
   height: 400px;
   object-fit: cover;
 }
